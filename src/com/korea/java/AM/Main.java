@@ -92,6 +92,33 @@ public class Main {
 				articles.remove(foundIndex);
 				System.out.println(id + "번 게시물이 삭제되었습니다.");
 
+			} else if (command.startsWith("article modify")) {
+				String[] commands = command.split(" ");
+				int id = Integer.parseInt(commands[2]);
+				int foundIndex = -1;
+
+				for (int i = 0; i < articles.size(); i++) {
+					Article article = articles.get(i);
+					if (article.id == id) {
+						foundIndex = i;
+						System.out.printf("제목 : ");
+						String title = sc.nextLine();
+						System.out.printf("내용 : ");
+						String body = sc.nextLine();
+						article.title = title;
+						article.body = body;
+						System.out.println(id + "번 게시물이 수정되었습니다.");
+						break;
+					}
+				}
+				
+				if (foundIndex == -1) {
+					System.out.println(id + "번 게시물은 존재하지 않습니다.");
+					continue ;
+				}
+				
+				
+
 			} else {
 				System.out.println("존재하지 않는 명령어입니다.");
 			}
